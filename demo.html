@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Explorer — Demo</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page="demo">
+  <header>
+    <div class="container">
+      <nav>
+        <a class="brand" href="index.html">AI Explorer</a>
+        <div class="nav-links">
+          <a href="basics.html" data-page="basics">Basics</a>
+          <a href="types.html" data-page="types">Types</a>
+          <a href="glossary.html" data-page="glossary">Glossary</a>
+          <a href="demo.html" data-page="demo">Demo</a>
+          <a href="quiz.html" data-page="quiz">Quiz</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1 class="section-title">Interactive AI Learning Demo</h1>
+    <div class="grid-2">
+      <div class="card">
+        <label for="hours">Study hours per week</label>
+        <input id="hours" type="text" placeholder="e.g. 8" />
+
+        <label for="practice">Practice consistency</label>
+        <select id="practice">
+          <option value="high">High</option>
+          <option value="medium">Medium</option>
+          <option value="low">Low</option>
+        </select>
+
+        <label for="topic">Main AI topic you are learning</label>
+        <textarea id="topic" rows="3" placeholder="e.g. machine learning"></textarea>
+
+        <button id="predictBtn" class="btn btn-primary">Predict Learning Outcome</button>
+      </div>
+
+      <div class="card">
+        <h3>Prediction Output</h3>
+        <div class="output" id="predictionOutput">Enter values and click “Predict Learning Outcome”.</div>
+      </div>
+    </div>
+
+    <section>
+      <div class="card">
+        <h3>How this demo connects to AI</h3>
+        <p>This mini tool simulates a basic rule-based decision model. Real AI systems usually use larger datasets and machine learning models, but this helps you understand how inputs can influence output predictions.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    AI Explorer • Demo page
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

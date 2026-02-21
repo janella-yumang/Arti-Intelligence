@@ -3,600 +3,75 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Explorer — Interactive Learning Website</title>
-  <style>
-    :root {
-      --bg: #0f172a;
-      --card: #111827;
-      --muted: #94a3b8;
-      --text: #e5e7eb;
-      --primary: #22d3ee;
-      --primary-2: #a78bfa;
-      --good: #22c55e;
-      --bad: #ef4444;
-      --warn: #f59e0b;
-      --shadow: 0 10px 30px rgba(2, 6, 23, 0.4);
-      --radius: 16px;
-    }
-
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background: radial-gradient(circle at top right, #1f2937, var(--bg));
-      color: var(--text);
-      line-height: 1.6;
-    }
-
-    .container {
-      width: min(1100px, 92%);
-      margin: 0 auto;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 30;
-      backdrop-filter: blur(8px);
-      background: rgba(15, 23, 42, 0.8);
-      border-bottom: 1px solid rgba(148, 163, 184, 0.2);
-    }
-
-    nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.9rem 0;
-      gap: 1rem;
-    }
-
-    .brand {
-      font-weight: 700;
-      letter-spacing: 0.4px;
-      color: var(--primary);
-    }
-
-    .nav-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-    }
-
-    .nav-links a {
-      color: var(--text);
-      text-decoration: none;
-      padding: 0.4rem 0.7rem;
-      border-radius: 8px;
-      transition: 0.2s ease;
-      font-size: 0.95rem;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active {
-      background: rgba(34, 211, 238, 0.15);
-      color: #67e8f9;
-    }
-
-    .hero {
-      padding: 4.5rem 0 2rem;
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 1.5rem;
-      align-items: center;
-    }
-
-    .hero h1 {
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      line-height: 1.12;
-      margin: 0 0 0.7rem;
-    }
-
-    .hero p { color: var(--muted); margin-bottom: 1.2rem; }
-
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.35rem 0.75rem;
-      border-radius: 999px;
-      background: rgba(167, 139, 250, 0.15);
-      color: #ddd6fe;
-      font-size: 0.85rem;
-      margin-bottom: 0.9rem;
-    }
-
-    .hero-actions { display: flex; gap: 0.8rem; flex-wrap: wrap; }
-
-    .btn {
-      border: none;
-      border-radius: 12px;
-      padding: 0.7rem 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: 0.2s ease;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--primary), var(--primary-2));
-      color: #0f172a;
-    }
-
-    .btn-secondary {
-      background: rgba(148, 163, 184, 0.15);
-      color: var(--text);
-      border: 1px solid rgba(148, 163, 184, 0.3);
-    }
-
-    .btn:hover { transform: translateY(-1px); }
-
-    .hero-card {
-      background: linear-gradient(155deg, rgba(34, 211, 238, 0.12), rgba(167, 139, 250, 0.1));
-      border: 1px solid rgba(148, 163, 184, 0.25);
-      box-shadow: var(--shadow);
-      border-radius: var(--radius);
-      padding: 1rem;
-      min-height: 230px;
-    }
-
-    .meter {
-      margin-top: 1rem;
-      display: grid;
-      gap: 0.75rem;
-    }
-
-    .meter-row { font-size: 0.9rem; }
-
-    .meter-track {
-      height: 10px;
-      background: rgba(148, 163, 184, 0.25);
-      border-radius: 999px;
-      overflow: hidden;
-    }
-
-    .meter-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--primary), var(--primary-2));
-      width: 0;
-      transition: width 0.5s ease;
-    }
-
-    section { padding: 2rem 0; }
-
-    .section-title {
-      margin-bottom: 1rem;
-      font-size: clamp(1.3rem, 2.8vw, 2rem);
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1rem;
-    }
-
-    .card {
-      background: rgba(17, 24, 39, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.2);
-      border-radius: var(--radius);
-      padding: 1rem;
-      box-shadow: var(--shadow);
-    }
-
-    .card h3 { margin-top: 0.2rem; }
-    .card p { color: var(--muted); }
-
-    .tab-wrap {
-      background: rgba(17, 24, 39, 0.9);
-      border-radius: var(--radius);
-      border: 1px solid rgba(148, 163, 184, 0.2);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-
-    .tabs {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      padding: 0.8rem;
-      border-bottom: 1px solid rgba(148, 163, 184, 0.2);
-      background: rgba(15, 23, 42, 0.8);
-    }
-
-    .tab-btn {
-      border: 1px solid rgba(148, 163, 184, 0.3);
-      background: transparent;
-      color: var(--text);
-      padding: 0.45rem 0.75rem;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-
-    .tab-btn.active {
-      background: rgba(34, 211, 238, 0.2);
-      border-color: rgba(34, 211, 238, 0.6);
-      color: #67e8f9;
-    }
-
-    .tab-content { display: none; padding: 1rem; }
-    .tab-content.active { display: block; }
-
-    .glossary {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0.8rem;
-    }
-
-    .term {
-      background: rgba(2, 6, 23, 0.5);
-      border-radius: 12px;
-      border: 1px solid rgba(148, 163, 184, 0.2);
-      overflow: hidden;
-    }
-
-    .term button {
-      all: unset;
-      display: block;
-      width: 100%;
-      padding: 0.7rem 0.8rem;
-      cursor: pointer;
-      font-weight: 600;
-    }
-
-    .term .definition {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.25s ease;
-      color: var(--muted);
-      padding: 0 0.8rem;
-    }
-
-    .term.open .definition {
-      max-height: 110px;
-      padding: 0 0.8rem 0.75rem;
-    }
-
-    .demo-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
-
-    .output {
-      background: rgba(2, 6, 23, 0.6);
-      border: 1px dashed rgba(148, 163, 184, 0.3);
-      border-radius: 12px;
-      padding: 0.8rem;
-      min-height: 130px;
-    }
-
-    input[type="text"],
-    textarea,
-    select {
-      width: 100%;
-      background: rgba(2, 6, 23, 0.55);
-      border: 1px solid rgba(148, 163, 184, 0.25);
-      border-radius: 10px;
-      color: var(--text);
-      padding: 0.6rem;
-      margin-bottom: 0.7rem;
-      font: inherit;
-    }
-
-    .quiz-question {
-      margin-bottom: 0.8rem;
-      padding: 0.8rem;
-      border-radius: 10px;
-      background: rgba(2, 6, 23, 0.45);
-      border: 1px solid rgba(148, 163, 184, 0.2);
-    }
-
-    .quiz-result {
-      margin-top: 0.8rem;
-      font-weight: 600;
-    }
-
-    .score-good { color: var(--good); }
-    .score-mid { color: var(--warn); }
-    .score-bad { color: var(--bad); }
-
-    footer {
-      padding: 1.5rem 0 2rem;
-      color: var(--muted);
-      text-align: center;
-      border-top: 1px solid rgba(148, 163, 184, 0.2);
-      margin-top: 1rem;
-    }
-
-    @media (max-width: 900px) {
-      .hero,
-      .cards,
-      .demo-grid,
-      .glossary {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+  <title>AI Explorer — Home</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
+<body data-page="home">
   <header>
     <div class="container">
       <nav>
-        <div class="brand">AI Explorer</div>
+        <a class="brand" href="index.html">AI Explorer</a>
         <div class="nav-links">
-          <a href="#basics" class="active">Basics</a>
-          <a href="#types">Types</a>
-          <a href="#glossary">Glossary</a>
-          <a href="#demo">Demo</a>
-          <a href="#quiz">Quiz</a>
+          <a href="basics.html" data-page="basics">Basics</a>
+          <a href="types.html" data-page="types">Types</a>
+          <a href="glossary.html" data-page="glossary">Glossary</a>
+          <a href="demo.html" data-page="demo">Demo</a>
+          <a href="quiz.html" data-page="quiz">Quiz</a>
         </div>
       </nav>
     </div>
   </header>
 
   <main class="container">
-    <section class="hero" id="top">
+    <section class="hero">
       <div>
         <div class="pill">Interactive Educational Website</div>
-        <h1>Learn Artificial Intelligence with Hands-On Interaction</h1>
+        <h1>Learn Artificial Intelligence Through Clear Notes and Practice</h1>
         <p>
-          Explore core AI concepts, compare AI types, test a simple decision model,
-          and challenge yourself with a short quiz.
+          This website is organized by menu pages. Explore AI basics, compare AI types,
+          review a detailed glossary, test an interactive demo, and complete a full quiz.
         </p>
         <div class="hero-actions">
-          <a href="#demo"><button class="btn btn-primary">Try AI Demo</button></a>
-          <a href="#quiz"><button class="btn btn-secondary">Take Quiz</button></a>
+          <a href="basics.html"><button class="btn btn-primary">Start with Basics</button></a>
+          <a href="quiz.html"><button class="btn btn-secondary">Take Full Quiz</button></a>
         </div>
       </div>
 
-      <div class="hero-card">
-        <h3>AI Impact Snapshot</h3>
-        <p style="color: var(--muted); margin-top: 0;">Move the slider to estimate how strongly AI affects each area.</p>
-        <label for="impactRange">AI impact level: <span id="impactValue">60</span>%</label>
-        <input id="impactRange" type="range" min="0" max="100" value="60" />
-        <div class="meter">
-          <div class="meter-row">Healthcare<div class="meter-track"><div id="m1" class="meter-fill"></div></div></div>
-          <div class="meter-row">Education<div class="meter-track"><div id="m2" class="meter-fill"></div></div></div>
-          <div class="meter-row">Transportation<div class="meter-track"><div id="m3" class="meter-fill"></div></div></div>
-        </div>
+      <div class="card">
+        <h3>What you will learn</h3>
+        <ul>
+          <li>AI foundations, history, and modern technologies</li>
+          <li>Narrow AI vs AGI vs ASI differences</li>
+          <li>Core terms like NLP, computer vision, and generative AI</li>
+          <li>Real-world applications, benefits, and challenges</li>
+          <li>Knowledge check with 20 quiz questions</li>
+        </ul>
       </div>
     </section>
 
-    <section id="basics">
-      <h2 class="section-title">AI Basics</h2>
+    <section>
+      <h2 class="section-title">Menu Overview</h2>
       <div class="cards">
         <article class="card">
-          <h3>What is AI?</h3>
-          <p>Artificial Intelligence (AI) is the ability of computers to perform tasks that usually require human intelligence, such as understanding language, recognizing patterns, and making decisions.</p>
+          <h3>Basics</h3>
+          <p>Definition, history, technologies, applications, and future AI trends.</p>
         </article>
         <article class="card">
-          <h3>How AI Learns</h3>
-          <p>Many AI systems use data to learn patterns. This process is called machine learning. The more quality data and training, the better the model can make predictions.</p>
+          <h3>Types</h3>
+          <p>Understand Narrow AI, AGI, and ASI with practical context.</p>
         </article>
         <article class="card">
-          <h3>Why It Matters</h3>
-          <p>AI can improve speed, accuracy, and automation in many fields. At the same time, responsible use is important to reduce bias and protect privacy.</p>
+          <h3>Glossary</h3>
+          <p>Tap key terms to quickly review definitions and concepts.</p>
         </article>
-      </div>
-    </section>
-
-    <section id="types">
-      <h2 class="section-title">Types of AI</h2>
-      <div class="tab-wrap">
-        <div class="tabs">
-          <button class="tab-btn active" data-tab="narrow">Narrow AI</button>
-          <button class="tab-btn" data-tab="general">General AI</button>
-          <button class="tab-btn" data-tab="super">Super AI</button>
-          <button class="tab-btn" data-tab="ethics">AI Ethics</button>
-        </div>
-
-        <div class="tab-content active" id="narrow">
-          <h3>Narrow AI (Weak AI)</h3>
-          <p>Designed for specific tasks like translation, recommendations, image recognition, or voice assistants. Most AI tools used today are narrow AI.</p>
-        </div>
-        <div class="tab-content" id="general">
-          <h3>General AI (AGI)</h3>
-          <p>A hypothetical form of AI that can perform any intellectual task a human can do. AGI does not yet exist in practice.</p>
-        </div>
-        <div class="tab-content" id="super">
-          <h3>Super AI</h3>
-          <p>A theoretical level where AI surpasses human intelligence in nearly all domains. This remains speculative and is actively debated.</p>
-        </div>
-        <div class="tab-content" id="ethics">
-          <h3>Ethical AI</h3>
-          <p>Ethical AI focuses on fairness, transparency, safety, accountability, and privacy. Responsible design helps ensure AI benefits everyone.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="glossary">
-      <h2 class="section-title">Mini AI Glossary (Click to Expand)</h2>
-      <div class="glossary">
-        <div class="term">
-          <button>Algorithm</button>
-          <div class="definition">A set of rules or steps a computer follows to solve a problem or perform a task.</div>
-        </div>
-        <div class="term">
-          <button>Model</button>
-          <div class="definition">A trained system that uses learned patterns from data to make predictions or decisions.</div>
-        </div>
-        <div class="term">
-          <button>Training Data</button>
-          <div class="definition">Examples used to teach a machine learning model what to recognize or predict.</div>
-        </div>
-        <div class="term">
-          <button>Bias</button>
-          <div class="definition">Systematic unfairness in AI outcomes caused by data quality, design choices, or societal factors.</div>
-        </div>
-      </div>
-    </section>
-
-    <section id="demo">
-      <h2 class="section-title">Interactive AI Decision Demo</h2>
-      <div class="demo-grid">
-        <div class="card">
-          <label for="hours">Study hours per week</label>
-          <input id="hours" type="text" placeholder="e.g. 8" />
-
-          <label for="practice">Practice consistency</label>
-          <select id="practice">
-            <option value="high">High</option>
-            <option value="medium">Medium</option>
-            <option value="low">Low</option>
-          </select>
-
-          <label for="topic">Main topic</label>
-          <textarea id="topic" rows="3" placeholder="e.g. machine learning"></textarea>
-
-          <button id="predictBtn" class="btn btn-primary">Predict Learning Outcome</button>
-        </div>
-
-        <div class="card">
-          <h3>Prediction Output</h3>
-          <div class="output" id="predictionOutput">
-            Enter values and click “Predict Learning Outcome”.
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="quiz">
-      <h2 class="section-title">Quick AI Quiz</h2>
-      <div class="card">
-        <div class="quiz-question">
-          <p>1) Which AI type is most common today?</p>
-          <label><input type="radio" name="q1" value="a" /> Super AI</label><br />
-          <label><input type="radio" name="q1" value="b" /> Narrow AI</label><br />
-          <label><input type="radio" name="q1" value="c" /> General AI</label>
-        </div>
-
-        <div class="quiz-question">
-          <p>2) What is machine learning mainly based on?</p>
-          <label><input type="radio" name="q2" value="a" /> Guessing without data</label><br />
-          <label><input type="radio" name="q2" value="b" /> Learning patterns from data</label><br />
-          <label><input type="radio" name="q2" value="c" /> Random decisions</label>
-        </div>
-
-        <div class="quiz-question">
-          <p>3) Which is a key responsible AI principle?</p>
-          <label><input type="radio" name="q3" value="a" /> Fairness</label><br />
-          <label><input type="radio" name="q3" value="b" /> Opacity</label><br />
-          <label><input type="radio" name="q3" value="c" /> Ignoring privacy</label>
-        </div>
-
-        <button id="checkQuiz" class="btn btn-secondary">Check Score</button>
-        <div id="quizResult" class="quiz-result"></div>
       </div>
     </section>
   </main>
 
   <footer>
-    AI Explorer • Educational interactive webpage about Artificial Intelligence
+    AI Explorer • Home page
   </footer>
 
-  <script>
-    const navLinks = document.querySelectorAll('.nav-links a');
-    navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.forEach(l => l.classList.remove('active'));
-        link.classList.add('active');
-      });
-    });
-
-    const range = document.getElementById('impactRange');
-    const impactValue = document.getElementById('impactValue');
-    const m1 = document.getElementById('m1');
-    const m2 = document.getElementById('m2');
-    const m3 = document.getElementById('m3');
-
-    function updateMeters(value) {
-      impactValue.textContent = value;
-      m1.style.width = Math.min(100, Number(value) + 10) + '%';
-      m2.style.width = value + '%';
-      m3.style.width = Math.max(0, Number(value) - 15) + '%';
-    }
-
-    range.addEventListener('input', (e) => updateMeters(e.target.value));
-    updateMeters(range.value);
-
-    const tabButtons = document.querySelectorAll('.tab-btn');
-    const tabContents = document.querySelectorAll('.tab-content');
-
-    tabButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const target = btn.dataset.tab;
-        tabButtons.forEach(b => b.classList.remove('active'));
-        tabContents.forEach(c => c.classList.remove('active'));
-        btn.classList.add('active');
-        document.getElementById(target).classList.add('active');
-      });
-    });
-
-    const terms = document.querySelectorAll('.term');
-    terms.forEach(term => {
-      const button = term.querySelector('button');
-      button.addEventListener('click', () => {
-        term.classList.toggle('open');
-      });
-    });
-
-    const predictBtn = document.getElementById('predictBtn');
-    const hoursInput = document.getElementById('hours');
-    const practiceInput = document.getElementById('practice');
-    const topicInput = document.getElementById('topic');
-    const output = document.getElementById('predictionOutput');
-
-    predictBtn.addEventListener('click', () => {
-      const hours = Number(hoursInput.value);
-      const practice = practiceInput.value;
-      const topic = topicInput.value.trim() || 'your topic';
-
-      if (!Number.isFinite(hours) || hours < 0) {
-        output.textContent = 'Please enter a valid non-negative number for study hours.';
-        return;
-      }
-
-      let score = hours;
-      if (practice === 'high') score += 6;
-      if (practice === 'medium') score += 3;
-      if (practice === 'low') score += 0;
-
-      let level = '';
-      if (score >= 12) level = 'Excellent progress expected';
-      else if (score >= 7) level = 'Steady progress expected';
-      else level = 'Progress may be slow';
-
-      output.innerHTML = `
-        <strong>Topic:</strong> ${topic}<br>
-        <strong>Estimated outcome:</strong> ${level}<br>
-        <strong>Tip:</strong> Keep consistent practice and review feedback each week.
-      `;
-    });
-
-    const checkQuizBtn = document.getElementById('checkQuiz');
-    const quizResult = document.getElementById('quizResult');
-
-    checkQuizBtn.addEventListener('click', () => {
-      const answers = { q1: 'b', q2: 'b', q3: 'a' };
-      let score = 0;
-
-      Object.entries(answers).forEach(([key, correct]) => {
-        const selected = document.querySelector(`input[name="${key}"]:checked`);
-        if (selected && selected.value === correct) score += 1;
-      });
-
-      quizResult.classList.remove('score-good', 'score-mid', 'score-bad');
-
-      if (score === 3) {
-        quizResult.classList.add('score-good');
-        quizResult.textContent = `Great job! You scored ${score}/3.`;
-      } else if (score === 2) {
-        quizResult.classList.add('score-mid');
-        quizResult.textContent = `Nice work! You scored ${score}/3. Review one topic and try again.`;
-      } else {
-        quizResult.classList.add('score-bad');
-        quizResult.textContent = `You scored ${score}/3. Revisit the sections above and retry.`;
-      }
-    });
-  </script>
+  <script src="main.js"></script>
 </body>
 </html>
