@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 360" role="img" aria-labelledby="title desc">
+  <title id="title">Responsible AI Illustration</title>
+  <desc id="desc">Shield and check marks representing fairness, privacy, and safety in AI.</desc>
+  <defs>
+    <linearGradient id="shield" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#22d3ee"/>
+      <stop offset="100%" stop-color="#a78bfa"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="360" fill="#0f1b37" rx="22"/>
+  <path d="M400 70 L520 120 V210 C520 270 470 315 400 335 C330 315 280 270 280 210 V120 Z" fill="url(#shield)" opacity="0.95"/>
+  <g fill="#e2e8f0" font-family="Segoe UI, Arial, sans-serif" text-anchor="middle">
+    <text x="400" y="175" font-size="34" font-weight="700">Responsible AI</text>
+    <text x="400" y="208" font-size="18">Fairness • Privacy • Safety • Accountability</text>
+  </g>
+  <g stroke="#67e8f9" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M140 150 l20 20 l35 -40"/>
+    <path d="M140 210 l20 20 l35 -40"/>
+    <path d="M140 270 l20 20 l35 -40"/>
+    <path d="M605 150 l20 20 l35 -40"/>
+    <path d="M605 210 l20 20 l35 -40"/>
+    <path d="M605 270 l20 20 l35 -40"/>
+  </g>
+</svg>

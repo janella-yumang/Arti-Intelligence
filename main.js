@@ -85,6 +85,31 @@ if (checkQuizBtn) {
       if (selected && selected.value === correct) {
         score += 1;
       }
+
+      const questionInputs = document.querySelectorAll(`input[name="${key}"]`);
+      if (questionInputs.length > 0) {
+        const questionBlock = questionInputs[0].closest('.quiz-question');
+        const correctInput = document.querySelector(`input[name="${key}"][value="${correct}"]`);
+        const correctLabel = correctInput ? correctInput.parentElement.textContent.trim() : 'N/A';
+        const selectedLabel = selected ? selected.parentElement.textContent.trim() : 'No answer selected';
+        const isCorrect = selected && selected.value === correct;
+
+        questionBlock.classList.remove('quiz-correct', 'quiz-incorrect');
+        questionBlock.classList.add(isCorrect ? 'quiz-correct' : 'quiz-incorrect');
+
+        let feedback = questionBlock.querySelector('.question-feedback');
+        if (!feedback) {
+          feedback = document.createElement('p');
+          feedback.className = 'question-feedback';
+          questionBlock.appendChild(feedback);
+        }
+
+        if (isCorrect) {
+          feedback.textContent = `✅ Correct. Answer: ${correctLabel}`;
+        } else {
+          feedback.textContent = `❌ Correct answer: ${correctLabel}. Your answer: ${selectedLabel}.`;
+        }
+      }
     });
 
     quizResult.classList.remove('score-good', 'score-mid', 'score-bad');

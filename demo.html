@@ -24,6 +24,7 @@
 
   <main class="container">
     <h1 class="section-title">Interactive AI Learning Demo</h1>
+    <p class="page-intro">Try different input values to see how a simple model changes its prediction. This illustrates how input features can affect outputs.</p>
     <div class="grid-2">
       <div class="card">
         <label for="hours">Study hours per week</label>
@@ -49,9 +50,16 @@
     </div>
 
     <section>
-      <div class="card">
-        <h3>How this demo connects to AI</h3>
-        <p>This mini tool simulates a basic rule-based decision model. Real AI systems usually use larger datasets and machine learning models, but this helps you understand how inputs can influence output predictions.</p>
+      <div class="grid-2">
+        <article class="card">
+          <h3>How this demo connects to AI</h3>
+          <p>This mini tool simulates a basic rule-based decision model. Real AI systems usually use larger datasets and machine learning models, but this helps you understand how inputs can influence output predictions.</p>
+          <p class="note">In real projects, models are evaluated using metrics like accuracy, precision, recall, and error rate before deployment.</p>
+        </article>
+        <article class="card">
+          <h3>Input to Output Flow</h3>
+          <img src="assets/ai-network.svg" alt="Flow from learner inputs to AI prediction output" />
+        </article>
       </div>
     </section>
   </main>

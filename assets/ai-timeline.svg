@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 260" role="img" aria-labelledby="title desc">
+  <title id="title">AI History Timeline</title>
+  <desc id="desc">Simple timeline showing key eras in AI development.</desc>
+  <rect width="800" height="260" rx="20" fill="#101a34"/>
+  <line x1="80" y1="130" x2="720" y2="130" stroke="#22d3ee" stroke-width="4"/>
+  <g font-family="Segoe UI, Arial, sans-serif" text-anchor="middle" fill="#e2e8f0">
+    <circle cx="120" cy="130" r="12" fill="#22d3ee"/>
+    <text x="120" y="165" font-size="16">1950s</text>
+    <text x="120" y="95" font-size="14">AI idea</text>
+
+    <circle cx="280" cy="130" r="12" fill="#a78bfa"/>
+    <text x="280" y="165" font-size="16">1970s</text>
+    <text x="280" y="95" font-size="14">AI winter</text>
+
+    <circle cx="440" cy="130" r="12" fill="#22d3ee"/>
+    <text x="440" y="165" font-size="16">2000s</text>
+    <text x="440" y="95" font-size="14">ML growth</text>
+
+    <circle cx="620" cy="130" r="12" fill="#a78bfa"/>
+    <text x="620" y="165" font-size="16">2010s+</text>
+    <text x="620" y="95" font-size="14">Deep learning</text>
+  </g>
+</svg>
