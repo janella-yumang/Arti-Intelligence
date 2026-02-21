@@ -24,9 +24,12 @@
 
   <main class="container">
     <h1 class="section-title">Interactive AI Learning Demo</h1>
-    <p class="page-intro">Try different input values to see how a simple model changes its prediction. This illustrates how input features can affect outputs.</p>
+    <p class="page-intro">Try different input values to see how a simple prediction model changes its output. This illustrates the core AI concept of input features affecting predictions.</p>
+    
     <div class="grid-2">
       <div class="card">
+        <h3>Try It: Learning Outcome Predictor</h3>
+        <img src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800" alt="Student learning with technology" />
         <label for="hours">Study hours per week</label>
         <input id="hours" type="text" placeholder="e.g. 8" />
 
@@ -45,20 +48,35 @@
 
       <div class="card">
         <h3>Prediction Output</h3>
-        <div class="output" id="predictionOutput">Enter values and click “Predict Learning Outcome”.</div>
-      </div>
+        <div class="output" id="predictionOutput">Enter values and click “Predict Learning Outcome”.</div>        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800" alt="Data analysis and prediction visualization" style="margin-top: 1rem;" />      </div>
     </div>
 
     <section>
       <div class="grid-2">
         <article class="card">
           <h3>How this demo connects to AI</h3>
-          <p>This mini tool simulates a basic rule-based decision model. Real AI systems usually use larger datasets and machine learning models, but this helps you understand how inputs can influence output predictions.</p>
-          <p class="note">In real projects, models are evaluated using metrics like accuracy, precision, recall, and error rate before deployment.</p>
+          <img src="https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=800" alt="AI decision making process" />
+          <p>This mini tool simulates a basic <strong>rule-based decision model</strong>. It takes your inputs (hours, practice level, topic) and applies simple logic to generate a prediction.</p>
+          <p><strong>In Real AI Systems:</strong></p>
+          <ul>
+            <li>Models use much larger datasets (thousands to millions of examples)</li>
+            <li>Machine learning algorithms find patterns automatically from data</li>
+            <li>Systems are evaluated on accuracy, precision, recall before deployment</li>
+            <li>Predictions improve over time as more data is collected</li>
+          </ul>
+          <p class="note">Example: Netflix uses viewing history from 230+ million users to predict what show you'll enjoy next.</p>
         </article>
         <article class="card">
-          <h3>Input to Output Flow</h3>
-          <img src="assets/ai-network.svg" alt="Flow from learner inputs to AI prediction output" />
+          <h3>Real-World Prediction Examples</h3>
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800" alt="Business analytics and predictions" />
+          <ul>
+            <li><strong>Healthcare:</strong> Predicting patient health risks from medical records</li>
+            <li><strong>Finance:</strong> Credit scoring based on financial history</li>
+            <li><strong>E-commerce:</strong> Amazon predicting what you want to buy</li>
+            <li><strong>Education:</strong> Khan Academy predicting which practice problems help most</li>
+            <li><strong>Weather:</strong> Forecasting systems combining millions of data points</li>
+            <li><strong>Transportation:</strong> Google Maps predicting arrival times</li>
+          </ul>
         </article>
       </div>
     </section>
