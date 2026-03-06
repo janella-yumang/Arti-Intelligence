@@ -320,6 +320,26 @@ select {
   color: var(--bad);
 }
 
+.about-hero {
+  margin-bottom: 1.2rem;
+}
+
+.profile-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-photo {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.profile-role {
+  font-weight: 600;
+  color: var(--text);
+  margin-top: -0.2rem;
+}
+
 footer {
   padding: 1.5rem 0 2rem;
   color: var(--muted);
